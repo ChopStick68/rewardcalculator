@@ -89,9 +89,10 @@ with col1:
 
 with col2:
     st.plotly_chart(cumulative_fig)
+st.write("Your numbers get better if you farm on the side and keep locking regulary!")
 
 # Instructions for yield farming calculator
-st.write("Fill in the blanks to see your potential farming outcome:")
+st.write("Fill in the current numbers to see your potential farming outcome:")
 
 # Create four columns for input fields
 col1, col2, col3, col4 = st.columns(4)
@@ -112,6 +113,7 @@ with col4:
 # Perform the calculation
 fees_kept = 0.75 * myfees
 additional_earnings = emissions_per_epoch * myfarm / totaltvl if totaltvl > 0 else 0
+st.write("The following graphs show the precentage of the TVL owned by your LP as a pie chart. On the right you see the value of 75% of your fess as well as what you can expect for platform emissions on the order of 300k assuming you earn according to your TVL share. This can be assured by means of proper bribing and by acquisition of a partner NFT, also by means of farming, which is the natural approach in the early stages.")
 
 # Create two columns for side-by-side visuals
 col1, col2 = st.columns(2)
