@@ -99,16 +99,16 @@ col1, col2, col3, col4 = st.columns(4)
 
 # Input fields side-by-side
 with col1:
-    totaltvl = st.number_input("Total TVL (in $):", min_value=0.0, format="%.2f")
+    totaltvl = st.number_input("Total TVL (in $):", min_value=25000000.00, format="%.2f")
 
 with col2:
-    myfarm = st.number_input("Your Farm (in $):", min_value=0.0, format="%.2f")
+    myfarm = st.number_input("Your Farm (in $):", min_value=2000000.00, format="%.2f")
 
 with col3:
-    myfees = st.number_input("Your Fees (in $):", min_value=0.0, format="%.2f")
+    myfees = st.number_input("Your Fees (in $):", min_value=30000.00, format="%.2f")
 
 with col4:
-    emissions_per_epoch = st.number_input("Emissions per Epoch", min_value=0.0, value=150000.0, format="%.2f")
+    emissions_per_epoch = st.number_input("Emissions per Epoch", min_value=0.0, value=300000.0, format="%.2f")
 
 # Perform the calculation
 fees_kept = 0.75 * myfees
