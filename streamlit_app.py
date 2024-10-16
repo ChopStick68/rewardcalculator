@@ -10,10 +10,12 @@ st.write("### Emissions")
 col1, col2 = st.columns(2)
 
 with col1:
-    token_price = st.number_input("Token Price (in $):", min_value=0.0, value=0.17, format="%.2f")
+    # No min value, accepts any number
+    token_price = st.number_input("Token Price (in $):", value=0.17, format="%.2f")
 
 with col2:
-    redemption_rate = st.number_input("Redemption Rate (as a fraction):", min_value=0.0, max_value=1.0, value=1.0, format="%.2f")
+    # Allow redemption rate to accept any positive number
+    redemption_rate = st.number_input("Redemption Rate (as a fraction):", min_value=0.0, value=1.0, format="%.2f")
 
 # --- Add Emissions Plot and Adjusted Emissions Plot ---
 
@@ -89,7 +91,7 @@ with col1:
 
 with col2:
     st.plotly_chart(cumulative_fig)
-st.write("Your numbers get better if you farm on the side and keep locking regulary!")
+st.write("Your numbers get better if you farm on the side and keep locking regularly!")
 
 # Instructions for yield farming calculator
 st.write("Fill in the current numbers to see your potential farming outcome:")
@@ -99,21 +101,25 @@ col1, col2, col3, col4 = st.columns(4)
 
 # Input fields side-by-side
 with col1:
-    totaltvl = st.number_input("Total TVL (in $):", min_value=25000000.00, format="%.2f")
+    # Allow any number including negatives and zero for TVL
+    totaltvl = st.number_input("Total TVL (in $):", min_value=0.0, format="%.2f")
 
 with col2:
-    myfarm = st.number_input("Your Farm (in $):", min_value=2000000.00, format="%.2f")
+    # Allow any number including negatives and zero for Farm
+    myfarm = st.number_input("Your Farm (in $):", min_value=0.0, format="%.2f")
 
 with col3:
-    myfees = st.number_input("Your Fees (in $):", min_value=30000.00, format="%.2f")
+    # Allow any number including negatives and zero for Fees
+    myfees = st.number_input("Your Fees (in $):", min_value=0.0, format="%.2f")
 
 with col4:
+    # Allow any number including negatives and zero for Emissions per Epoch
     emissions_per_epoch = st.number_input("Emissions per Epoch", min_value=0.0, value=300000.0, format="%.2f")
 
 # Perform the calculation
 fees_kept = 0.75 * myfees
 additional_earnings = emissions_per_epoch * myfarm / totaltvl if totaltvl > 0 else 0
-st.write("The following graphs show the precentage of the TVL owned by your LP as a pie chart. On the right you see the value of 75% of your fess as well as what you can expect for platform emissions on the order of 300k assuming you earn according to your TVL share. This can be assured by means of proper bribing and by acquisition of a partner NFT, also by means of farming, which is the natural approach in the early stages.")
+st.write("The following graphs show the percentage of the TVL owned by your LP as a pie chart. On the right, you see the value of 75% of your fees as well as what you can expect for platform emissions on the order of 300k assuming you earn according to your TVL share. This can be assured by means of proper bribing and by acquisition of a partner NFT, also by means of farming, which is the natural approach in the early stages.")
 
 # Create two columns for side-by-side visuals
 col1, col2 = st.columns(2)
