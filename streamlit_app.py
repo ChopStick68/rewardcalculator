@@ -145,6 +145,7 @@ with col2:
             go.Bar(name='Fees received on Raydium', x=['Fees'], y=[0.84*myfees], marker_color='#66ccff'),  # New Raydium bar            
             go.Bar(name='Fees received on Yeve', x=['Fees'], y=[fees_kept], marker_color='#66b3ff'),
             go.Bar(name='Additional Earnings on Yeve', x=['Fees'], y=[additional_earnings], marker_color='#99ff99'),
+            go.Bar(name='Total Earnings on Yeve', x=['Fees'], y=[additional_earnings+fees_kept], marker_color='#c71585'),
         ])
 
         fig2.update_layout(barmode='group', yaxis_title='Amount in Dollars')
