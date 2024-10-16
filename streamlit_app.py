@@ -15,14 +15,14 @@ with col1:
 
 with col2:
     # Allow redemption rate to accept any positive number
-    redemption_rate = st.number_input("Redemption Rate (as a fraction):", min_value=0.0, value=1.0, format="%.2f")
+    redemption_rate = st.number_input("Service fee:", min_value=0.0, value=0.0, format="%.2f")
 
 # --- Add Emissions Plot and Adjusted Emissions Plot ---
 
 # Generate the data for the emissions plot
 i_values = np.arange(1, 51)  # Values from 1 to 50
 emissions_values = 2000000 * (0.99 ** i_values)  # Emissions function
-adjusted_emissions_values = emissions_values * token_price * redemption_rate  # Adjusted emissions with token price and redemption rate
+adjusted_emissions_values = emissions_values * token_price * (1-redemption_rate)  # Adjusted emissions with token price and redemption rate
 
 # Create a line plot for the original emissions
 emissions_fig = go.Figure(data=go.Scatter(x=i_values, y=emissions_values, mode='lines+markers', name="Emissions"))
@@ -102,15 +102,15 @@ col1, col2, col3, col4 = st.columns(4)
 # Input fields side-by-side
 with col1:
     # Allow any number including negatives and zero for TVL
-    totaltvl = st.number_input("Total TVL (in $):", min_value=0.0, format="%.2f")
+    totaltvl = st.number_input("Total TVL (in $):", min_value=0.0, value=25000000.0,format="%.2f")
 
 with col2:
     # Allow any number including negatives and zero for Farm
-    myfarm = st.number_input("Your Farm (in $):", min_value=0.0, format="%.2f")
+    myfarm = st.number_input("Your Farm (in $):", min_value=0.0,value=1000000.0, format="%.2f")
 
 with col3:
     # Allow any number including negatives and zero for Fees
-    myfees = st.number_input("Your Fees (in $):", min_value=0.0, format="%.2f")
+    myfees = st.number_input("Your Fees (in $):", min_value=0.0,value=15000,.0 format="%.2f")
 
 with col4:
     # Allow any number including negatives and zero for Emissions per Epoch
