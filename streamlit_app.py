@@ -27,7 +27,7 @@ emissions_fig = go.Figure(data=go.Scatter(x=i_values, y=emissions_values, mode='
 emissions_fig.update_layout(
     title="Emissions Over Time",
     xaxis_title="Epoch (i)",
-    yaxis_title="Emissions",
+    yaxis_title="Token Emissions",
     yaxis=dict(range=[0, 2000000])  # Set y-axis range for better visualization
 )
 
@@ -36,7 +36,7 @@ adjusted_emissions_fig = go.Figure(data=go.Scatter(x=i_values, y=adjusted_emissi
 adjusted_emissions_fig.update_layout(
     title="Adjusted Emissions Over Time",
     xaxis_title="Epoch (i)",
-    yaxis_title="Adjusted Emissions",
+    yaxis_title="Dollar Emissions",
     yaxis=dict(range=[0, 2000000 * token_price * redemption_rate])  # Set y-axis range dynamically
 )
 
