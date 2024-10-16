@@ -1,10 +1,29 @@
 import streamlit as st
 import plotly.graph_objects as go
+import numpy as np
 
 # App title
 st.title("Yield Farming Calculator")
 
+# --- Add Emissions Plot ---
+# Generate the data for the emissions plot
+i_values = np.arange(1, 51)  # Values from 1 to 50
+emissions_values = 2000000 * (0.99 ** i_values)  # Emissions function
 
+# Create a line plot
+emissions_fig = go.Figure(data=go.Scatter(x=i_values, y=emissions_values, mode='lines+markers'))
+emissions_fig.update_layout(
+    title="Emissions Over Time",
+    xaxis_title="Epoch (i)",
+    yaxis_title="Emissions",
+    yaxis=dict(range=[0, 2000000])  # Set y-axis range for better visualization
+)
+
+# Display the emissions plot above the yield farming calculator
+st.plotly_chart(emissions_fig)
+
+# Instructions for yield farming calculator
+st.write("Fill in the blanks to see your potential farming outcome:")
 
 # Create four columns for input fields
 col1, col2, col3, col4 = st.columns(4)
@@ -20,7 +39,7 @@ with col3:
     myfees = st.number_input("Your Fees (in $):", min_value=0.0, format="%.2f")
 
 with col4:
-    emissions_per_epoch = st.number_input("Emissions per Epoch", min_value=0.0,  format="%.2f")
+    emissions_per_epoch = st.number_input("Emissions per Epoch", min_value=0.0, value=150000.0, format="%.2f")
 
 # Perform the calculation
 fees_kept = 0.75 * myfees
