@@ -5,13 +5,25 @@ import numpy as np
 # App title
 st.title("Yield Farming Calculator")
 
-# --- Add Emissions Plot ---
+# Inputs for Token Price and Redemption Rate
+st.write("### Emissions Adjustments")
+col1, col2 = st.columns(2)
+
+with col1:
+    token_price = st.number_input("Token Price (in $):", min_value=0.0, value=1.0, format="%.2f")
+
+with col2:
+    redemption_rate = st.number_input("Redemption Rate (as a fraction):", min_value=0.0, max_value=1.0, value=1.0, format="%.2f")
+
+# --- Add Emissions Plot and Adjusted Emissions Plot ---
+
 # Generate the data for the emissions plot
 i_values = np.arange(1, 51)  # Values from 1 to 50
 emissions_values = 2000000 * (0.99 ** i_values)  # Emissions function
+adjusted_emissions_values = emissions_values * token_price * redemption_rate  # Adjusted emissions with token price and redemption rate
 
-# Create a line plot
-emissions_fig = go.Figure(data=go.Scatter(x=i_values, y=emissions_values, mode='lines+markers'))
+# Create a line plot for the original emissions
+emissions_fig = go.Figure(data=go.Scatter(x=i_values, y=emissions_values, mode='lines+markers', name="Emissions"))
 emissions_fig.update_layout(
     title="Emissions Over Time",
     xaxis_title="Epoch (i)",
@@ -19,8 +31,24 @@ emissions_fig.update_layout(
     yaxis=dict(range=[0, 2000000])  # Set y-axis range for better visualization
 )
 
-# Display the emissions plot above the yield farming calculator
-st.plotly_chart(emissions_fig)
+# Create a second plot for adjusted emissions
+adjusted_emissions_fig = go.Figure(data=go.Scatter(x=i_values, y=adjusted_emissions_values, mode='lines+markers', name="Adjusted Emissions"))
+adjusted_emissions_fig.update_layout(
+    title="Adjusted Emissions Over Time",
+    xaxis_title="Epoch (i)",
+    yaxis_title="Adjusted Emissions",
+    yaxis=dict(range=[0, 2000000 * token_price * redemption_rate])  # Set y-axis range dynamically
+)
+
+# Display the two plots side by side
+st.write("### Emissions Plots")
+col1, col2 = st.columns(2)
+
+with col1:
+    st.plotly_chart(emissions_fig)
+
+with col2:
+    st.plotly_chart(adjusted_emissions_fig)
 
 # Instructions for yield farming calculator
 st.write("Fill in the blanks to see your potential farming outcome:")
