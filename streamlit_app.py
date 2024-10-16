@@ -10,7 +10,7 @@ st.write("### Emissions")
 col1, col2 = st.columns(2)
 
 with col1:
-    token_price = st.number_input("Token Price (in $):", min_value=0.0, value=1.0, format="%.2f")
+    token_price = st.number_input("Token Price (in $):", min_value=0.0, value=0.17, format="%.2f")
 
 with col2:
     redemption_rate = st.number_input("Redemption Rate (as a fraction):", min_value=0.0, max_value=1.0, value=1.0, format="%.2f")
@@ -47,6 +47,44 @@ with col1:
 
 with col2:
     st.plotly_chart(adjusted_emissions_fig)
+
+# Display earnings based on investment in presale
+st.write("### Presale Earnings Projection")
+
+st.write("If you invest $10k in the presale and we maintain $70k in fees and bribes, as well as a locking rate of 75%, you will earn the following amount per week:")
+
+# Calculate weekly earnings using the provided formula
+investment = 10000  # Amount invested in the presale
+fees_bribes = 70000  # Assumed constant fees and bribes
+locking_rate = 0.75  # Locking rate
+
+weekly_earnings = investment / 0.17 * 2 / (25000000 + emissions_values * locking_rate) * fees_bribes
+
+# Create a plot of weekly earnings as a function of i (epochs 1 to 50)
+earnings_fig = go.Figure(data=go.Scatter(x=i_values, y=weekly_earnings, mode='lines+markers', name="Weekly Earnings"))
+earnings_fig.update_layout(
+    title="Weekly Earnings Over Time",
+    xaxis_title="Epoch (i)",
+    yaxis_title="Earnings in $"
+)
+
+# Display cumulative earnings (sum over time)
+cumulative_earnings = np.cumsum(weekly_earnings)  # Cumulative sum of earnings over time
+cumulative_fig = go.Figure(data=go.Scatter(x=i_values, y=cumulative_earnings, mode='lines+markers', name="Cumulative Earnings"))
+cumulative_fig.update_layout(
+    title="Cumulative Earnings Over Time",
+    xaxis_title="Epoch (i)",
+    yaxis_title="Total Earnings in $"
+)
+
+# Display the earnings plots side by side
+col1, col2 = st.columns(2)
+
+with col1:
+    st.plotly_chart(earnings_fig)
+
+with col2:
+    st.plotly_chart(cumulative_fig)
 
 # Instructions for yield farming calculator
 st.write("Fill in the blanks to see your potential farming outcome:")
