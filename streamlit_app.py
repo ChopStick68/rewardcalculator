@@ -54,5 +54,3 @@ if myfees > 0:
     st.pyplot(fig2)
 else:
     st.write("Usual fees should be greater than 0 to display the bar chart.")
-ally, you will get 150000 * {myfarm:.2f} / {totaltvl:.2f} = {additional_earnings:.2f}")
-
