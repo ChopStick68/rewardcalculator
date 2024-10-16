@@ -142,7 +142,7 @@ with col2:
         fig2 = go.Figure(data=[
             go.Bar(name='Usual Fees', x=['Fees'], y=[myfees], marker_color='#ff9999'),
             go.Bar(name='Fees received on Orca', x=['Fees'], y=[0.87*myfees], marker_color='#ffcc66'),  # New Orca bar
-            go.Bar(name='Fees received on Raydium', x=['Fees'], y=[0.84*myfees], marker_color='#66ccff')  # New Raydium bar            
+            go.Bar(name='Fees received on Raydium', x=['Fees'], y=[0.84*myfees], marker_color='#66ccff'),  # New Raydium bar            
             go.Bar(name='Fees received on Yeve', x=['Fees'], y=[fees_kept], marker_color='#66b3ff'),
             go.Bar(name='Additional Earnings on Yeve', x=['Fees'], y=[additional_earnings], marker_color='#99ff99'),
         ])
