@@ -114,7 +114,7 @@ with col3:
 
 with col4:
     # Allow any number including negatives and zero for Emissions per Epoch
-    emissions_per_epoch = st.number_input("Emissions per Epoch", min_value=0.0, value=300000.0, format="%.2f")
+    emissions_per_epoch = st.number_input("Emissions per Epoch (in $)", min_value=0.0, value=300000.0, format="%.2f")
 
 # Perform the calculation
 fees_kept = 0.75 * myfees
