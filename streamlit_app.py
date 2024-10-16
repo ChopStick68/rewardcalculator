@@ -51,7 +51,7 @@ with col2:
 # Display earnings based on investment in presale
 st.write("### Presale Earnings Projection")
 
-st.write("If you invest 10k in the presale and we maintain 100k in fees and bribes, as well as a locking rate of 75%, you will earn the following amount per week:")
+st.write("If you invest 10k in the presale and we maintain 200k in fees and bribes, as well as a locking rate of 75%, you will earn the following amount per week (we expect the platform to grow, though):")
 
 # Calculate cumulative emissions (up to each week)
 cumulative_emissions = np.cumsum(emissions_values)  # Cumulative emissions over time
