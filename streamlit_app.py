@@ -5,8 +5,9 @@ import plotly.graph_objects as go
 st.title("Yield Farming Calculator")
 
 
-# Create three columns for input fields
-col1, col2, col3 = st.columns(3)
+
+# Create four columns for input fields
+col1, col2, col3, col4 = st.columns(4)
 
 # Input fields side-by-side
 with col1:
@@ -18,9 +19,12 @@ with col2:
 with col3:
     myfees = st.number_input("Your Fees (in $):", min_value=0.0, format="%.2f")
 
+with col4:
+    emissions_per_epoch = st.number_input("Emissions per Epoch", min_value=0.0, value=150000.0, format="%.2f")
+
 # Perform the calculation
 fees_kept = 0.75 * myfees
-additional_earnings = 150000 * myfarm / totaltvl if totaltvl > 0 else 0
+additional_earnings = emissions_per_epoch * myfarm / totaltvl if totaltvl > 0 else 0
 
 # Create two columns for side-by-side visuals
 col1, col2 = st.columns(2)
