@@ -110,7 +110,7 @@ with col2:
 
 with col3:
     # Allow any number including negatives and zero for Fees
-    myfees = st.number_input("Your Fees (in $):", min_value=0.0,value=15000,.0 format="%.2f")
+    myfees = st.number_input("Your Fees (in $):", min_value=0.0,value=15000.0, format="%.2f")
 
 with col4:
     # Allow any number including negatives and zero for Emissions per Epoch
