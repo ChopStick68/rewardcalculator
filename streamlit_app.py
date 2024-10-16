@@ -39,7 +39,7 @@ adjusted_emissions_fig.update_layout(
     title="Adjusted Emissions Over Time",
     xaxis_title="Epoch (i)",
     yaxis_title="Dollar Emissions",
-    yaxis=dict(range=[0, 2000000 * token_price * redemption_rate])  # Set y-axis range dynamically
+    yaxis=dict(range=[0, 2000000 * token_price * (1-redemption_rate)])  # Set y-axis range dynamically
 )
 
 col1, col2 = st.columns(2)
