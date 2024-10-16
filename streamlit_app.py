@@ -20,7 +20,7 @@ with col3:
     myfees = st.number_input("Your Fees (in $):", min_value=0.0, format="%.2f")
 
 with col4:
-    emissions_per_epoch = st.number_input("Emissions per Epoch", min_value=0.0, value=150000.0, format="%.2f")
+    emissions_per_epoch = st.number_input("Emissions per Epoch", min_value=0.0,  format="%.2f")
 
 # Perform the calculation
 fees_kept = 0.75 * myfees
