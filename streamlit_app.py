@@ -3,10 +3,10 @@ import plotly.graph_objects as go
 import numpy as np
 
 # App title
-st.title("Yield Farming Calculator")
+st.title("Typical numbers on Yeve")
 
 # Inputs for Token Price and Redemption Rate
-st.write("### Emissions Adjustments")
+st.write("### Emissions")
 col1, col2 = st.columns(2)
 
 with col1:
@@ -40,8 +40,6 @@ adjusted_emissions_fig.update_layout(
     yaxis=dict(range=[0, 2000000 * token_price * redemption_rate])  # Set y-axis range dynamically
 )
 
-# Display the two plots side by side
-st.write("### Emissions Plots")
 col1, col2 = st.columns(2)
 
 with col1:
