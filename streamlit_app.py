@@ -58,7 +58,7 @@ cumulative_emissions = np.cumsum(emissions_values)  # Cumulative emissions over 
 
 # Calculate weekly earnings using the cumulative emissions
 investment = 10000  # Amount invested in the presale
-fees_bribes = 100000  # Assumed constant fees and bribes
+fees_bribes = 200000  # Assumed constant fees and bribes
 locking_rate = 0.75  # Locking rate
 
 # Using cumulative emissions instead of single-week emissions in the formula
