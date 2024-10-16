@@ -51,14 +51,18 @@ with col2:
 # Display earnings based on investment in presale
 st.write("### Presale Earnings Projection")
 
-st.write("If you invest $10k in the presale and we maintain $70k in fees and bribes, as well as a locking rate of 75%, you will earn the following amount per week:")
+st.write("If you invest 10k in the presale and we maintain 100k in fees and bribes, as well as a locking rate of 75%, you will earn the following amount per week:")
 
-# Calculate weekly earnings using the provided formula
+# Calculate cumulative emissions (up to each week)
+cumulative_emissions = np.cumsum(emissions_values)  # Cumulative emissions over time
+
+# Calculate weekly earnings using the cumulative emissions
 investment = 10000  # Amount invested in the presale
-fees_bribes = 70000  # Assumed constant fees and bribes
+fees_bribes = 100000  # Assumed constant fees and bribes
 locking_rate = 0.75  # Locking rate
 
-weekly_earnings = investment / 0.17 * 2 / (25000000 + emissions_values * locking_rate) * fees_bribes
+# Using cumulative emissions instead of single-week emissions in the formula
+weekly_earnings = investment / 0.17 * 2 / (25000000 + cumulative_emissions * locking_rate) * fees_bribes
 
 # Create a plot of weekly earnings as a function of i (epochs 1 to 50)
 earnings_fig = go.Figure(data=go.Scatter(x=i_values, y=weekly_earnings, mode='lines+markers', name="Weekly Earnings"))
